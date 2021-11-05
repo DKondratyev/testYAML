@@ -1,0 +1,27 @@
+---  # document start
+
+trigger:
+- migration2vc19_20211015
+
+pool:
+  name: VS19LocalPool
+  demands: ant
+
+steps:
+- task: Ant@1
+  displayName: 'Ant  dev/src/build.xml'
+  inputs:
+    buildFile: dev/src/build.xml
+    options: '-verbose'
+    targets: retrieve
+    publishJUnitResults: false
+
+- task: Ant@1
+  displayName: 'Ant  dev/src/build.xml'
+  inputs:
+    buildFile: dev/src/build.xml
+    options: '-verbose'
+    targets: incremental
+    publishJUnitResults: false
+    
+...  # document end
